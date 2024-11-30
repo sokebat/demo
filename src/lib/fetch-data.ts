@@ -1,4 +1,4 @@
-import { Collection, Product } from "@/types/product-types";
+// import { Collection, Product } from "@/types/product-types";
 
 export async function fetchData(query: string): Promise<any> {
   const response = await fetch("https://admin.hyperce.io/shop-api", {
