@@ -29,7 +29,7 @@ interface ButtonProps
   extends ComponentProps<"button">,
     VariantProps<typeof buttonVariants> {}
 
-const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   variant,
   className,
   size,
@@ -43,4 +43,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+ 

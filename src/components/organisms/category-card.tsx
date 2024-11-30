@@ -1,7 +1,6 @@
-import React from "react";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/index";
 import Image from "next/image";
-import Button from "../atoms/buttons";
+import React from "react";
 
 interface CategoryProps {
   cat: string;
@@ -10,7 +9,7 @@ interface CategoryProps {
   className?: string;
 }
 
-const Category: React.FC<CategoryProps> = ({ cat, imageUrl, className }) => {
+export const CategoryCard: React.FC<CategoryProps> = ({ cat, imageUrl }) => {
   return (
     <div className=" relative group block overflow-hidden rounded">
       <div className="overflow-hidden  aspect-square ">
@@ -23,10 +22,10 @@ const Category: React.FC<CategoryProps> = ({ cat, imageUrl, className }) => {
         />
       </div>
       <div className="absolute top-3 left-3">
-        <Button size="sm" className="uppercase">{cat}</Button>
+        <Button size="sm" className="uppercase">
+          {cat}
+        </Button>
       </div>
     </div>
   );
 };
-
-export default Category;

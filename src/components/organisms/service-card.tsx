@@ -6,7 +6,7 @@ interface ServiceCardProps {
   description: string;
 }
 
-const ServiceCard = ({ icon, title, description }: ServiceCardProps) => {
+export const ServiceCard = ({ icon, title, description }: ServiceCardProps) => {
   return (
     <div className="flex items-start space-x-6">
       <div className="flex-shrink-0 text-gray-600">{icon}</div>
@@ -17,5 +17,3 @@ const ServiceCard = ({ icon, title, description }: ServiceCardProps) => {
     </div>
   );
 };
-
-export default ServiceCard;

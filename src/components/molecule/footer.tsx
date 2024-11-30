@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { sections, socialLinks } from "@/data/footer-data";
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="bg-gray-100 py-10">
       <div className="max-w-8xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
@@ -77,4 +77,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+ 

@@ -1,9 +1,8 @@
 import { ServiceData } from "@/data/service-data";
 import React from "react";
-import ServiceCard from "../organisms/service-card";
-import SectionHeading from "../atoms/section-heading";
+import { SectionHeading, ServiceCard } from "@/components/index";
 
-const ServiceTemplate = () => {
+ export const ServiceTemplate = () => {
   return (
     <div className="  mt-20">
       <SectionHeading heading="Our Services" />
@@ -16,4 +15,4 @@ const ServiceTemplate = () => {
   );
 };
 
-export default ServiceTemplate;
+ 

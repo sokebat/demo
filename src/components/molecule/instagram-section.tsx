@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const InstagramSection = () => {
+export const InstagramSection = () => {
   const images = [
     "https://images.unsplash.com/photo-1603217192766-e9db2d08a0fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fHdvbWVuJTIwY2xvdGhlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=480&h=480&q=100",
     "https://images.unsplash.com/photo-1603217039640-afce9bb7d785?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=480&h=480&q=100",
@@ -42,5 +42,3 @@ const InstagramSection = () => {
     </section>
   );
 };
-
-export default InstagramSection;

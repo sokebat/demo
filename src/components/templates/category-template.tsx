@@ -1,9 +1,12 @@
 import { fetchData } from "@/lib/fetch-data";
-import SectionHeading from "../atoms/section-heading";
-import CategoryCard from "../organisms/category-card";
+import { 
+  CategoryCard, 
+  SectionHeading
+ } from "@/components/index";
+
 import { Product } from "@/types/product-types";
 
-const CategoryTemplate = async () => {
+export const CategoryTemplate = async () => {
   const productQuery = `
     query GetProductList {
       products(
@@ -65,4 +68,4 @@ const CategoryTemplate = async () => {
   );
 };
 
-export default CategoryTemplate;
+ 

@@ -1,15 +1,31 @@
 "use client";
 
-import { sections } from "@/data/footer-data";
 import { fetchData } from "@/lib/fetch-data";
-import { BriefcaseBusiness, ChevronDown, Layers3, Search } from "lucide-react";
+import { Collection } from "@/types/product-types";
+import { BriefcaseBusiness, List, SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { HiOutlineRectangleStack } from "react-icons/hi2";
 
-export default function Navbar() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [collections, setCollections] = useState<any[]>([]);
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/index";
+import SearchField from "../atoms/search";
+
+export const Navbar = () => {
+  const [collections, setCollections] = useState<Collection[]>([]);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
     const getCollection = async () => {
@@ -35,15 +51,13 @@ export default function Navbar() {
     };
 
     getCollection();
-  }, []); // Empty dependency array to run this effect only once when the component mounts
+  }, []);
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white shadow-sm ">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Left Section: Logo & Collections */}
+        <div className="flex justify-between items-center   py-4">
           <div className="flex items-center gap-x-6">
-            {/* Logo */}
             <div className="relative flex items-center">
               <Link href="/" className="flex items-center">
                 <Image
@@ -59,74 +73,85 @@ export default function Navbar() {
               </span>
             </div>
 
-            <div
-              className="relative"
-              // onMouseLeave={() => setDropdownOpen(false)}
-            >
-              <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                onMouseEnter={() => setDropdownOpen(true)}
-                onBlur={() => setDropdownOpen(false)}
-                className="flex items-center gap-1 text-gray-600 focus:outline-none"
-              >
-                <Layers3 />
-                Collections
-                <ChevronDown
-                  className={`h-4 w-4 ml-1 transition-transform duration-300 ${
-                    dropdownOpen ? "rotate-180" : "rotate-0"
-                  }`}
-                />
-              </button>
-
-              {dropdownOpen && (
-                <div className="absolute left-0 mt-2 w-48 p-1 bg-white shadow-lg rounded-md z-50">
-                  {collections?.map((collection, index) => (
-                    <Link
-                      // href={`/collections/${collection.slug}`}  
-                      href="/"
-                      key={index}
-                      className="block px-4 py-2 rounded-md hover:bg-slate-200 text-black"
-                    >
-                      {collection.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+            <NavigationMenu className="mt-2 hidden lg:block">
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>
+                    <p className="flex items-center gap-1 text-gray-600 focus:outline-none">
+                      <HiOutlineRectangleStack className=" h-5 w-5" />
+                      Collections
+                    </p>
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="w-48 block z-50">
+                    <p className="flex flex-col   w-48 p-1  ">
+                      {collections.map((collection) => (
+                        <Link
+                          key={collection.id}
+                          href={`/collections/${collection.slug}`}
+                          className="block py-2 w-full text-start px-2 rounded-md hover:bg-slate-200 text-black"
+                        >
+                          {collection.name}
+                        </Link>
+                      ))}
+                    </p>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
 
-          <div className="hidden md:flex flex-1 mx-6 items-center rounded-full border-2 border-gray-300">
-            <input
-              type="text"
-              placeholder="What's on your mind today?"
-              className="flex-1 px-4 py-2 border-r-2 rounded-l-full focus:outline-none focus:ring-0"
-            />
-            <button className="flex items-center gap-1 px-4 py-2 text-gray-600">
-              <Search />
-              Search
-            </button>
+          <div className="h-7 border-l-2 hidden lg:block bg-[#BABEC3]"></div>
+
+          <div className="hidden lg:block flex-1 ">
+            <SearchField />
           </div>
 
           <div className="flex items-center space-x-4">
+            <div
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="cursor-pointer lg:hidden "
+            >
+              <SearchIcon />
+            </div>
             <BriefcaseBusiness />
-            <span className="h-5 border-l-2"></span>
-            <Link href="/sign-in" className="text-gray-600">
+            <div className="h-7 border-l-2   bg-[#BABEC3]"></div>
+
+            <Link href="/sign-in" className="hidden sm:block text-gray-600">
               Sign in
             </Link>
-            <Link href="/sign-up" className="text-gray-600">
+            <Link href="/sign-up" className="hidden sm:block text-gray-600">
               Sign up
             </Link>
+            <div className="lg:hidden">
+              <Sheet >
+                <SheetTrigger>
+                  <List className="h-7 mt-1" />
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Collections</SheetTitle>
+                    <SheetDescription>
+                      <div className="p-1 mb-8">
+                        {collections.map((collection) => (
+                          <p
+                            key={collection.id}
+                            className="ml-3 font-semibold text-gray-900 block  px-2 py-2"
+                          >
+                            <Link href={`/collections/${collection.slug}`}>
+                              {collection.name}
+                            </Link>
+                          </p>
+                        ))}
+                      </div>
+                    </SheetDescription>
+                  </SheetHeader>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
-
-        <div className="flex md:hidden mt-4">
-          <input
-            type="text"
-            placeholder="What's on your mind today?"
-            className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
       </div>
+      {isSearchOpen && <SearchField />}
     </nav>
   );
-}
+};

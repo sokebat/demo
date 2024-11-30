@@ -1,7 +1,9 @@
-import InstagramSection from "@/components/molecule/instagram-section";
-import HeroSection from "@/components/organisms/hero-section";
-import CategoryTemplate from "@/components/templates/category-template";
-import ServiceTemplate from "@/components/templates/service-template";
+import {
+  HeroSection,
+  CategoryTemplate,
+  ServiceTemplate,
+  InstagramSection,
+} from "@/components/index";
 
 const Page = () => {
   return (
@@ -10,7 +12,6 @@ const Page = () => {
       <CategoryTemplate />
       <ServiceTemplate />
       <InstagramSection />
-
     </div>
   );
 };
