@@ -27,8 +27,6 @@ export const Navbar = () => {
   const [collections, setCollections] = useState<Collection[]>([]);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  
-
   useEffect(() => {
     const getCollection = async () => {
       const collectionQuery = `
@@ -45,7 +43,7 @@ export const Navbar = () => {
 
       try {
         const data = await fetchData(collectionQuery);
- 
+
         setCollections(data.collections.items || []);
       } catch (error) {
         console.error("Error fetching collections:", error);
@@ -126,19 +124,19 @@ export const Navbar = () => {
               Sign up
             </Link>
             <div className="lg:hidden">
-              <Sheet >
+              <Sheet>
                 <SheetTrigger>
                   <List className="h-7 mt-1" />
                 </SheetTrigger>
                 <SheetContent>
                   <SheetHeader>
-                    <SheetTitle>Collections</SheetTitle>
+                    <SheetTitle className="text-start">Collections</SheetTitle>
                     <SheetDescription>
-                      <div className="p-1 mb-8">
+                      <div className="p-1 mb-8 ">
                         {collections.map((collection) => (
                           <p
                             key={collection.id}
-                            className="ml-3 font-semibold text-gray-900 block  px-2 py-2"
+                            className="ml-3 font-semibold text-start text-gray-900 block  px-2 py-2"
                           >
                             <Link href={`/collections/${collection.slug}`}>
                               {collection.name}
