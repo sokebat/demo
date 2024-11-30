@@ -1,6 +1,7 @@
-// import { Collection, Product } from "@/types/product-types";
 
-export async function fetchData(query: string): Promise<any> {
+export async function fetchData(
+  query: string
+) {
   const response = await fetch("https://admin.hyperce.io/shop-api", {
     method: "POST",
     headers: {
@@ -14,5 +15,6 @@ export async function fetchData(query: string): Promise<any> {
   if (!response.ok) throw new Error("Failed to fetch data");
 
   const data = await response.json();
+ 
   return data.data;
 }

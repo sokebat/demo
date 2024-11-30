@@ -1,8 +1,8 @@
-export type Collection = {
+export interface Collection {
   id: string;
   name: string;
   slug: string;
-};
+}
 
 export type FeaturedAsset = {
   preview: string;
@@ -18,5 +18,4 @@ export type Product = {
   featuredAsset: FeaturedAsset;
   collections: Collection[];
 };
-
 

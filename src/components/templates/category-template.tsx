@@ -1,8 +1,5 @@
 import { fetchData } from "@/lib/fetch-data";
-import { 
-  CategoryCard, 
-  SectionHeading
- } from "@/components/index";
+import { CategoryCard, SectionHeading } from "@/components/index";
 
 import { Product } from "@/types/product-types";
 
@@ -41,6 +38,7 @@ export const CategoryTemplate = async () => {
 
   try {
     const data = await fetchData(productQuery);
+
     products = data?.products?.items || [];
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -67,5 +65,3 @@ export const CategoryTemplate = async () => {
     </div>
   );
 };
-
- 

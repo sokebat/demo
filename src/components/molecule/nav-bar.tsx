@@ -27,6 +27,8 @@ export const Navbar = () => {
   const [collections, setCollections] = useState<Collection[]>([]);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  
+
   useEffect(() => {
     const getCollection = async () => {
       const collectionQuery = `
@@ -43,7 +45,8 @@ export const Navbar = () => {
 
       try {
         const data = await fetchData(collectionQuery);
-        setCollections(data?.collections?.items || []);
+ 
+        setCollections(data.collections.items || []);
       } catch (error) {
         console.error("Error fetching collections:", error);
         setCollections([]);
